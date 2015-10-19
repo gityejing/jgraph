@@ -31,6 +31,8 @@ public class HelloWorld {
 		// 每个cellAttribute又是一个Map，其键－值对是具体一个cell的属性-值
 		Map attributes = new Hashtable();
 		// 以下建立两个顶点(cell)Hello和World，并分别设置他们的属性Map
+		
+		//----------------------------------------一个顶点
 		// Create Hello Vertex
 		DefaultGraphCell hello = new DefaultGraphCell("Hello");
 		// Create Hello Vertex Attributes
@@ -45,6 +47,8 @@ public class HelloWorld {
 		// 每个顶点为了与其他顶点相邻接，必须添加节点（cell）
 		DefaultPort hp = new DefaultPort();
 		hello.add(hp);
+		
+		//---------------------------------另一个顶点
 		// Create World Vertex
 		DefaultGraphCell world = new DefaultGraphCell("World");
 		// Create World Vertex Attributes
@@ -61,6 +65,8 @@ public class HelloWorld {
 		// Add a Port
 		DefaultPort wp = new DefaultPort();
 		world.add(wp);
+		
+		//-------------------------------------建立连线
 		// 建立联接两个顶点的边
 		// Create Edge
 		DefaultEdge edge = new DefaultEdge();
@@ -71,17 +77,20 @@ public class HelloWorld {
 		int arrow = GraphConstants.ARROW_CLASSIC;
 		GraphConstants.setLineEnd(edgeAttrib, arrow);
 		GraphConstants.setEndFill(edgeAttrib, true);
+		
 		// Connect Edge
 		// 边的两个端点就是两个顶点的child节点（port）
 		ConnectionSet cs = new ConnectionSet(edge, hp, wp);
 		Object[] cells = new Object[] { edge, hello, world };
+		
 		// Insert into Model
 		// model构件完成
 		model.insert(cells, attributes, cs, null, null);
+		
 		// Show in Frame
 		JFrame frame = new JFrame();
-		frame.getContentPane().add(new JScrollPane(graph));
-		// frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(new JScrollPane(graph));// 可滚动的pannel
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 	}
